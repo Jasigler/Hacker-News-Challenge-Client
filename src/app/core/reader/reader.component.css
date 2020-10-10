@@ -1,0 +1,58 @@
+.title-logo {
+  font-size: 50px;
+  margin-right: 10px;
+  color: #d34e24;
+}
+
+.heading-section {
+  margin: 2em 2em 20px;
+  border-bottom: black;
+  background-color: white;
+
+}
+
+.control-section {
+
+}
+
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.pagination-section {
+  background-color: #2c3e50;
+}
+.pagination-container {
+  font-size: 20px;
+}
+.custom-pagination {
+  color: white;
+}
+.story-section {
+
+ background-color:#2c3e50;
+}
+
+.story-card {
+  margin-bottom: 15px;
+  transition: all .2s ease-in-out;
+  border-radius: 30px;
+}
+
+.story-card:hover {
+  transform: scale(1.1);
+}
+
+.github-icon {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+.github-anchor {
+  color: black;
+  border-bottom: black;
+}
+.dropdown-item {
+  color: black;
+}
+

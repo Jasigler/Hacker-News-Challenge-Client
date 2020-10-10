@@ -1,0 +1,77 @@
+<section class="heading-section">
+  <nav class="level">
+    <div class="level-left">
+     <div class="level-item">
+       <fa-icon [icon]="mainIcon" class="title-logo"></fa-icon>
+      <h2 class="title is-1 site-title">HN's Latest Stories</h2>
+     </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item github-elements">
+        <fa-icon [icon]="githubIcon" class="github-icon"></fa-icon>
+        <a class="github-anchor" href="#">
+          Source Code
+       </a>
+      </div>
+    </div>
+  </nav>
+  <section class="section control-section">
+    <div class="container has-text-justified">
+      <div class="dropdown" [ngClass]="{'is-active': paginationDropdown}">
+        <div class="dropdown-trigger">
+          <button class="button" (click)="toggleDropdown()" >
+            <span>Stories Per Page  | {{storiesPerPage}} </span>
+            <span class="icon is-small">
+              <fa-icon [icon]="downChevronIcon"></fa-icon>
+      </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a (click)="setStoriesPerPage(5);
+              toggleDropdown()" class="dropdown-item">
+             5
+            </a>
+            <a (click)="setStoriesPerPage(10);
+              toggleDropdown()" class="dropdown-item">
+             10
+            </a>
+            <a (click)="setStoriesPerPage(20);
+              toggleDropdown()" class="dropdown-item is-active">
+             20
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+  </section>
+</section>
+<section class="section story-section">
+  <div class="container has-text-justified">
+    <div class="card story-card"
+         *ngFor=" let story of newStoryIds | paginate:
+         {itemsPerPage: storiesPerPage, currentPage: currentPageNumber, totalItems: totalStories}">
+      <app-story [storyId]="story"></app-story>
+    </div>
+  </div>
+</section>
+<section class="section pagination-section">
+  <div class="container has-text-centered pagination-container">
+    <pagination-template>
+      <nav class="pagination is-medium">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link">45</a></li>
+          <li><a class="pagination-link is-current">46</a></li>
+          <li><a class="pagination-link">47</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link">86</a></li>
+        </ul>
+      </nav>
+    </pagination-template>
+  </div>
+
+</section>

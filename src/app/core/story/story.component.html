@@ -1,0 +1,20 @@
+<div class="card-content">
+  <p class="title is-2 story-title">
+    <a href="{{currentStory?.url}}" target="_blank" class="story-link">
+      {{currentStory?.title}}
+    </a>
+  </p>
+</div>
+<div class="info-row">
+    <fa-icon [icon]="userIcon" class="user-icon"></fa-icon>
+    <p class="subtitle is-5">{{currentStory?.by}}</p>
+
+    <fa-icon [icon]="calendarIcon" class="calendar-icon"></fa-icon>
+    <p class="subtitle">{{currentStory?.time | datetime }}</p>
+
+    <fa-icon [icon]="commentIcon" class="comment-icon"></fa-icon>
+    <p class="subtitle">{{currentStory?.descendants}}</p>
+
+    <fa-icon [icon]="scoreIcon" class="score-icon"></fa-icon>
+    <p class="subtitle">{{currentStory?.score}}</p>
+</div>
