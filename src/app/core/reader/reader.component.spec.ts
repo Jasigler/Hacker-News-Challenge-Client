@@ -6,9 +6,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {StoryService} from '../../services/story.service';
 import {StoryComponent} from '../story/story.component';
 import {DatetimePipe} from '../../pipes/datetime.pipe';
-import {By} from '@angular/platform-browser';
 import {of} from 'rxjs';
-import {Story} from '../../../Models/Story';
 
 
 describe('ReaderComponent', () => {
@@ -48,7 +46,6 @@ describe('ReaderComponent', () => {
 
     spyOn(storyMock, 'GetNewStoryList').and.returnValue(serviceResults);
 
-    expect(storyMock).toHaveBeenCalledWith(component.ngOnInit());
     expect(component.newStoryIds).not.toBeNull();
   });
 
@@ -64,10 +61,21 @@ describe('ReaderComponent', () => {
     });
   }));
 
+  it('Calls the Story Service only once', () => {
+
+    spyOn(storyMock, 'GetNewStoryList');
+
+    fixture.detectChanges();
+    component.ngOnInit();
+
+    fixture.whenStable().then(() => {
+      expect(storyMock).toHaveBeenCalled();
+    });
+  });
+
   it('Is initialized with the expected component variables', () => {
-    expect(component.newStoryIds).toBeNull();
+    expect(component.newStoryIds.length).toEqual(0);
     expect(component.storiesPerPage).toBe(10);
-    expect(component.totalStories).toBeNull();
     expect(component.paginationDropdown).toBeFalse();
   });
 
@@ -90,14 +98,5 @@ describe('ReaderComponent', () => {
     const progressBar = debugElement.querySelector('app-busy');
 
     expect(progressBar).toBeTruthy();
-  });
-
-  it('Loading value modified after story Ids are retrieved', () => {
-
-    spyOn(component, 'ngOnInit');
-    fixture.detectChanges();
-    component.ngOnInit();
-
-    expect(component.toggleLoading).toHaveBeenCalled();
   });
 });

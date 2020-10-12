@@ -1,4 +1,5 @@
 <div class="card-content">
+  <app-busy *ngIf="isLoading"></app-busy>
   <p class="title is-2 story-title">
     <a href="{{currentStory?.url}}" target="_blank" class="story-link">
       {{currentStory?.title}}

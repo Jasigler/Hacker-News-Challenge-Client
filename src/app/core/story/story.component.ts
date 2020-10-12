@@ -21,7 +21,7 @@ export class StoryComponent implements OnInit {
   commentIcon = faComment;
   scoreIcon = faStarHalfAlt;
   calendarIcon = faCalendarPlus;
-
+  isLoading = true;
   currentStory: Story;
 
   constructor(private storyService: StoryService) { }
@@ -29,7 +29,14 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void {
       this.storyService.GetStory(this.storyId).subscribe(story => {
         this.currentStory = story;
+        this.toggleLoading();
       });
+  }
+
+  toggleLoading(): void {
+    this.isLoading
+    ? this.isLoading = false
+      : this.isLoading = true;
   }
 
 }

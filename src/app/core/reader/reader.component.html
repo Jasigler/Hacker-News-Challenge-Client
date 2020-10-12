@@ -3,13 +3,13 @@
     <div class="level-left">
      <div class="level-item">
        <fa-icon [icon]="mainIcon" class="title-logo"></fa-icon>
-      <h2 class="title is-1 site-title">HN's Latest Stories</h2>
+      <h2 class="title is-1 site-title">HN Latest Stories</h2>
      </div>
     </div>
     <div class="level-right">
       <div class="level-item github-elements">
         <fa-icon [icon]="githubIcon" class="github-icon"></fa-icon>
-        <a class="github-anchor" href="#">
+        <a class="github-anchor" href="https://github.com/Jasigler/Hacker-News-Challenge-Client" target="_blank">
           Source Code
        </a>
       </div>
@@ -56,9 +56,6 @@
 </section>
 <section class="section pagination-section">
   <div class="container has-text-centered">
-<!--    <pagination-controls (pageChange)="currentPageNumber = $event"-->
-<!--                         [maxSize]="storiesPerPage">-->
-<!--    </pagination-controls>-->
     <pagination-template #page="paginationApi"
                          (pageChange)="UpdatePage($event)">
       <nav class="pagination" role="navigation" aria-label="pagination">
@@ -71,7 +68,7 @@
           Next page</a>
         <ul class="pagination-list is-medium">
           <div *ngFor="let page of page.pages" class="pagination-link">
-            <a (click)="UpdatePage(page.value)" *ngIf="currentPageNumber !== page.value" class="page-number">
+            <a (click)="UpdatePage(page.value); topScroll()" *ngIf="currentPageNumber !== page.value" class="page-number">
               <span>{{ page.label }}</span>
             </a>
             <div *ngIf="currentPageNumber === page.value">
