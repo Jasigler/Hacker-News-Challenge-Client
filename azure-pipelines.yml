@@ -23,8 +23,8 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'dist/ng-azure-devops'
-    ArtifactName: 'web-app'
+    PathtoPublish: 'dist/NewsClient'
+    ArtifactName: 'newsclient'
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
     
