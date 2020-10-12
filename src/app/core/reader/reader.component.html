@@ -15,6 +15,7 @@
       </div>
     </div>
   </nav>
+</section>
   <section class="section control-section">
     <div class="container has-text-justified">
       <div class="dropdown" [ngClass]="{'is-active': paginationDropdown}">
@@ -28,16 +29,12 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <a (click)="setStoriesPerPage(5);
-              toggleDropdown()" class="dropdown-item">
-             5
-            </a>
             <a (click)="setStoriesPerPage(10);
               toggleDropdown()" class="dropdown-item">
              10
             </a>
             <a (click)="setStoriesPerPage(20);
-              toggleDropdown()" class="dropdown-item is-active">
+              toggleDropdown()" class="dropdown-item">
              20
             </a>
           </div>
@@ -45,33 +42,44 @@
       </div>
       </div>
   </section>
-</section>
 <section class="section story-section">
   <div class="container has-text-justified">
+    <app-busy *ngIf="isLoading"></app-busy>
     <div class="card story-card"
          *ngFor=" let story of newStoryIds | paginate:
-         {itemsPerPage: storiesPerPage, currentPage: currentPageNumber, totalItems: totalStories}">
+              {itemsPerPage: storiesPerPage,
+                    currentPage: currentPageNumber,
+                    totalItems: totalStories}">
       <app-story [storyId]="story"></app-story>
     </div>
   </div>
 </section>
 <section class="section pagination-section">
-  <div class="container has-text-centered pagination-container">
-    <pagination-template>
-      <nav class="pagination is-medium">
-        <a class="pagination-previous">Previous</a>
-        <a class="pagination-next">Next</a>
-        <ul class="pagination-list">
-          <li><a class="pagination-link">1</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link">45</a></li>
-          <li><a class="pagination-link is-current">46</a></li>
-          <li><a class="pagination-link">47</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link">86</a></li>
+  <div class="container has-text-centered">
+<!--    <pagination-controls (pageChange)="currentPageNumber = $event"-->
+<!--                         [maxSize]="storiesPerPage">-->
+<!--    </pagination-controls>-->
+    <pagination-template #page="paginationApi"
+                         (pageChange)="UpdatePage($event)">
+      <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous pagination-nav" [class.is-disabled]="page.isFirstPage()"
+           (click)="page.previous(); topScroll()">
+          Previous
+        </a>
+        <a class="pagination-next pagination-nav" [class.is-disabled]="page.isLastPage()"
+           (click)="page.next(); topScroll()">
+          Next page</a>
+        <ul class="pagination-list is-medium">
+          <div *ngFor="let page of page.pages" class="pagination-link">
+            <a (click)="UpdatePage(page.value)" *ngIf="currentPageNumber !== page.value" class="page-number">
+              <span>{{ page.label }}</span>
+            </a>
+            <div *ngIf="currentPageNumber === page.value">
+              <span class="active-page">{{ page.label }}</span>
+            </div>
+          </div>
         </ul>
       </nav>
     </pagination-template>
   </div>
-
 </section>

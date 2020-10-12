@@ -6,6 +6,7 @@ import { StoryComponent } from './story/story.component';
 import {AppModule} from '../app.module';
 import {DatetimePipe} from '../pipes/datetime.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
         FontAwesomeModule,
         AppModule,
         NgxPaginationModule,
+        SharedModule,
     ]
 })
 export class CoreModule { }

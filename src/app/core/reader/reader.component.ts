@@ -19,7 +19,6 @@ export class ReaderComponent implements OnInit {
   mainIcon = faYCombinator;
   downChevronIcon = faChevronDown;
 
-
   newStoryIds: number[] = [];
 
   currentPageNumber = 1;
@@ -27,14 +26,15 @@ export class ReaderComponent implements OnInit {
   totalStories: number;
   paginationDropdown = false;
 
+  isLoading = true;
 
   constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
-    this.storyService.GetNewStoryList().subscribe(idList => {
+   this.storyService.GetNewStoryList().subscribe(idList => {
       this.newStoryIds = idList;
       this.totalStories = idList.length;
-
+      this.toggleLoading();
     });
   }
 
@@ -50,5 +50,15 @@ export class ReaderComponent implements OnInit {
     this.paginationDropdown
       ? this.paginationDropdown = false
       : this.paginationDropdown = true;
+  }
+
+  toggleLoading(): void {
+   this.isLoading
+     ? this.isLoading = false
+     : this.isLoading = true;
+  }
+
+  topScroll(): void {
+    window.scroll(0, 0);
   }
 }

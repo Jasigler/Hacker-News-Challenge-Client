@@ -7,7 +7,7 @@ import {Story} from '../../Models/Story';
 })
 export class StoryService {
 
-  baseRoute = 'https://localhost:1770/api';
+  baseRoute = 'https://hackernews-api.azurewebsites.net/api';
   constructor(private client: HttpClient) { }
 
   public GetNewStoryList(): Observable<number[]> {
