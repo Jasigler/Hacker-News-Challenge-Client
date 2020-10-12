@@ -8,8 +8,7 @@ import * as moment from 'moment';
 export class DatetimePipe implements PipeTransform {
 
   transform(value: number): string {
-      return moment.unix(value)
-        .format('DD/MM/YYYY HH:MM').toString();
+    return moment.unix(value).fromNow();
   }
 
 }
