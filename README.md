@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/jasonsigler0724/HackerNews/_apis/build/status/Jasigler.Hacker-News-Challenge-Client?branchName=master)](https://dev.azure.com/jasonsigler0724/HackerNews/_build/latest?definitionId=1&branchName=master)
 <br />
 <p align="center">
 
