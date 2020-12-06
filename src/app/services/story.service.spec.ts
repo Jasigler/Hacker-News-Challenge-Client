@@ -65,12 +65,12 @@ describe('StoryService', () => {
   });
 
   it('GetStory handles a  404 response and returns a null Story Object', () => {
-    const requestedStory = new Story();
+    
     const mockError = new HttpResponse({ status: 404 });
 
     service.GetStory(12345678).subscribe(story => {
       expect(request.request.body.status).toBe(mockError.status);
-      expect(story).toEqual(requestedStory);
+      expect(story).toBeNull;
     });
 
     const request = httpMock.expectOne(`${service.baseRoute}/story/12345678`);
